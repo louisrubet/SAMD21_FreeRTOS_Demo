@@ -42,7 +42,7 @@ void DAC_0_init(void)
 
 void system_init(void)
 {
-	init_mcu();
+	init_mcu(); // lru
 
 	TIMER_0_CLOCK_init();
 

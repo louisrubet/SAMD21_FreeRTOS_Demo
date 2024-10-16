@@ -35,8 +35,8 @@ SEARCH_DIR(.)
 /* Memory Spaces Definitions */
 MEMORY
 {
-  rom      (rx)  : ORIGIN = 0x00000000, LENGTH = 0x00020000
-  ram      (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00004000
+  rom      (rx)  : ORIGIN = 0x00000000+0x2000, LENGTH = 0x00040000-0x2000 /* lru */
+  ram      (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00008000
 }
 
 /* The stack size used by the application. NOTE: you need to adjust according to your application. */
@@ -47,7 +47,8 @@ SECTIONS
 {
     .text :
     {
-        . = ALIGN(4);
+        /* . = ALIGN(4); */
+        . = ALIGN(0x2000);
         _sfixed = .;
         KEEP(*(.vectors .vectors.*))
         *(.text .text.* .gnu.linkonce.t.*)

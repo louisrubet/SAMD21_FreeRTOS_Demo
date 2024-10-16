@@ -7,11 +7,12 @@ static TaskHandle_t xDemotask;
 
 static void demo_task(void *p)
 {
-    volatile int x = 0;
+    gpio_set_pin_direction(GPIO(GPIO_PORTA, 22), GPIO_DIRECTION_OUT);
+    gpio_set_pin_level(GPIO(GPIO_PORTA, 22), false);
     for(;;)
     {
+        gpio_toggle_pin_level(GPIO(GPIO_PORTA, 22));
         vTaskDelay(1000);
-        x += 1;
     }
 }
 
@@ -19,7 +20,7 @@ int main(void)
 {
     /* Initializes MCU, drivers and middleware */
     system_init();
-    
+
     xTaskCreate(demo_task, "Demo", configMINIMAL_STACK_SIZE, NULL, 1, xDemotask);
 
     vTaskStartScheduler();

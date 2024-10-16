@@ -234,12 +234,14 @@ void Reset_Handler(void)
 	}
 
 	/* Clear the zero segment */
-	for (pDest = &_szero; pDest < &_ezero;) {
-		*pDest++ = 0;
-	}
+    if (_ezero != 0) { // lru
+        for (pDest = &_szero; pDest < &_ezero;) {
+            *pDest++ = 0;
+        }
+    }
 
 	/* Set the vector table base address */
-	pSrc      = (uint32_t *)&_sfixed;
+    pSrc      = (uint32_t *)&_sfixed;
 	SCB->VTOR = ((uint32_t)pSrc & SCB_VTOR_TBLOFF_Msk);
 
 	/* Change default QOS values to have the best performance and correct USB behaviour */

@@ -51,7 +51,7 @@
  */
 void _init_chip(void)
 {
-	hri_nvmctrl_set_CTRLB_RWS_bf(NVMCTRL, CONF_NVM_WAIT_STATE);
+	hri_nvmctrl_set_CTRLB_RWS_bf(NVMCTRL, CONF_NVM_WAIT_STATE); // lru blocks
 
 	_pm_init();
 	_sysctrl_init_sources();
