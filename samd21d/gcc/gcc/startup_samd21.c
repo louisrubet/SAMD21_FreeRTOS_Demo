@@ -223,6 +223,9 @@ void Reset_Handler(void)
 {
 	uint32_t *pSrc, *pDest;
 
+    /* Force disable the SysTick interrupt that could have been enabled by the bootloader */
+    SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;
+
 	/* Initialize the relocate segment */
 	pSrc  = &_etext;
 	pDest = &_srelocate;
@@ -233,12 +236,9 @@ void Reset_Handler(void)
 		}
 	}
 
-	/* Clear the zero segment */
-    if (_ezero != 0) { // lru
-        for (pDest = &_szero; pDest < &_ezero;) {
-            *pDest++ = 0;
-        }
-    }
+	/* Clear the bss segment */
+    for (pDest = &_szero; pDest < &_ezero; pDest++)
+        *pDest = 0;
 
 	/* Set the vector table base address */
     pSrc      = (uint32_t *)&_sfixed;

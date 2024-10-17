@@ -2,6 +2,7 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR ARM)
 
 set(ARM_TOOLCHAIN_DIR "/home/louis/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4/bin")
+# set(ARM_TOOLCHAIN_DIR "/usr/bin")
 set(BINUTILS_PATH ${ARM_TOOLCHAIN_DIR})
 
 set(TOOLCHAIN_PREFIX ${ARM_TOOLCHAIN_DIR}/arm-none-eabi-)

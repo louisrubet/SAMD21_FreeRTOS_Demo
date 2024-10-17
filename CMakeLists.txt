@@ -9,7 +9,7 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/arm-none-eabi-gcc.cmake)
 # Setup project, output and linker file
 project(SAMD-Demo)
 set(EXECUTABLE ${PROJECT_NAME}.elf)
-set(LINKER_FILE ${CMAKE_SOURCE_DIR}/samd21d/gcc/gcc/samd21g17d_flash.ld)
+set(LINKER_FILE ${CMAKE_SOURCE_DIR}/samd21d/gcc/gcc/samd21g18a_flash_bl.ld)
 
 #-T"../samd21d/gcc/gcc/samd21g17d_flash.ld"
 enable_language(C ASM)
